@@ -1,0 +1,1717 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> For My Love </title>
+    <link rel="icon" type="image/png" sizes="32x32" href="heart.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            overflow-x: hidden;
+        }
+
+        /* Floating Hearts Background */
+        .hearts-background {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .heart-float {
+            position: absolute;
+            font-size: 20px;
+            animation: floatHeart 15s infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes floatHeart {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.3;
+            }
+            90% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #ff6b9d 0%, #c06c84 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(255, 107, 157, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        header p {
+            font-size: 1.2rem;
+            font-style: italic;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 120px;
+            z-index: 99;
+        }
+
+        nav a {
+            color: #ff6b9d;
+            text-decoration: none;
+            margin: 0 1.5rem;
+            font-weight: bold;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        nav a:hover {
+            transform: scale(1.2);
+            color: #c06c84;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+            border-radius: 20px;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '💕';
+            position: absolute;
+            font-size: 15rem;
+            opacity: 0.1;
+            top: -50px;
+            right: -50px;
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .hero-section h2 {
+            font-size: 2.5rem;
+            color: #d63031;
+            margin-bottom: 1rem;
+        }
+
+        .hero-section p {
+            font-size: 1.3rem;
+            color: #2d3436;
+            line-height: 1.8;
+        }
+
+        /* Counter Section */
+        .love-counter {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 3rem;
+            box-shadow: 0 5px 15px rgba(255, 107, 157, 0.2);
+        }
+
+        .counter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .counter-item {
+            background: linear-gradient(135deg, #ff6b9d 0%, #ffa8c5 100%);
+            padding: 1.5rem;
+            border-radius: 10px;
+            color: white;
+        }
+
+        .counter-number {
+            font-size: 3rem;
+            font-weight: bold;
+        }
+
+        .counter-label {
+            font-size: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Timeline Section */
+        .timeline-section {
+            margin-bottom: 3rem;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, #ff6b9d, #ffa8c5);
+        }
+
+        .timeline-item {
+            display: flex;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            width: 45%;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+            animation: slideIn 0.5s;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .timeline-date {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #ff6b9d;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+            width: 150px;
+            text-align: center;
+        }
+
+        /* Photo Gallery */
+        .gallery-section {
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #d63031;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .photo-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .photo-item:hover {
+            transform: scale(1.05) rotate(2deg);
+        }
+
+        .photo-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .photo-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            padding: 1rem;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+
+        .photo-item:hover .photo-overlay {
+            transform: translateY(0);
+        }
+
+        /* Video Section  */
+        .video-section {
+            background: white;
+            padding: 2rem; 
+            border-radius: 15px;
+            margin-bottom: 3rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .video-item {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+
+        .video-item video {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        /* Love Letters */
+        .letters-section {
+            margin-bottom: 3rem;
+        }
+
+        .letter-card {
+            background: linear-gradient(135deg, #fff5f5 0%, #ffe8e8 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 15px rgba(255, 107, 157, 0.2);
+            border-left: 5px solid #ff6b9d;
+            position: relative;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .letter-card::before {
+            content: '💌';
+            position: absolute;
+            font-size: 3rem;
+            top: 1rem;
+            right: 1rem;
+            opacity: 0.2;
+        }
+
+        .letter-card h3 {
+            color: #d63031;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .letter-card p {
+            line-height: 1.8;
+            color: #2d3436;
+            font-size: 1.1rem;
+        }
+
+        /* Surprise Button */
+        .surprise-section {
+            text-align: center;
+            margin: 4rem 0;
+            padding: 3rem;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .surprise-btn {
+            background: linear-gradient(135deg, #ff6b9d 0%, #c06c84 100%);
+            color: white;
+            border: none;
+            padding: 1.5rem 3rem;
+            font-size: 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 107, 157, 0.4);
+            transition: all 0.3s;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .surprise-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(255, 107, 157, 0.6);
+        }
+
+        /* Surprise Modal */
+        .surprise-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .surprise-modal.active {
+            display: flex;
+        }
+
+        .surprise-content {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            max-width: 600px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            animation: zoomIn 0.5s;
+            box-shadow: 0 10px 50px rgba(255, 107, 157, 0.5);
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .surprise-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: #ff6b9d;
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .surprise-image {
+            width: 100%;
+            max-height: 300px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin: 1rem 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .surprise-text {
+            font-size: 1.3rem;
+            color: #d63031;
+            margin: 1.5rem 0;
+            line-height: 1.8;
+        }
+
+        /* Balloon Animation */
+        .balloon {
+            position: fixed;
+            font-size: 3rem;
+            animation: flyBalloon 5s ease-out forwards;
+            z-index: 1999;
+        }
+
+        @keyframes flyBalloon {
+            0% {
+                transform: translateY(100vh) translateX(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(var(--x)) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Music Player */
+        .music-player {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #ff6b9d 0%, #c06c84 100%);
+            padding: 1rem;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .music-btn {
+            background: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+
+        .music-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .music-info {
+            color: white;
+            display: none;
+        }
+
+        .music-info.playing {
+            display: block;
+        }
+
+        /* Interactive Heart */
+        .interactive-hearts {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        .click-heart {
+            position: absolute;
+            font-size: 2rem;
+            animation: floatUp 2s ease-out forwards;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) scale(0);
+                opacity: 0;
+            }
+        }
+
+        /* Quiz Section */
+        .quiz-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 3rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .quiz-question {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 100%);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .quiz-options {
+            display: grid;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .quiz-option {
+            background: white;
+            padding: 1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .quiz-option:hover {
+            background: #fff5f5;
+            border-color: #ff6b9d;
+            transform: translateX(10px);
+        }
+
+        .quiz-option.correct {
+            background: #00b894;
+            color: white;
+            border-color: #00b894;
+        }
+
+        .quiz-option.wrong {
+            background: #d63031;
+            color: white;
+            border-color: #d63031;
+        }
+
+        /* Memories Map */
+        .map-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 3rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .map-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .map-item {
+            background: linear-gradient(135deg, #fff5f5 0%, #ffe8e8 100%);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .map-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(255, 107, 157, 0.3);
+        }
+
+        .map-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #c06c84 0%, #6c5b7b 100%);
+            color: white;
+            padding: 3rem 0 1rem;
+            text-align: center;
+        }
+
+        .footer-heart {
+            font-size: 3rem;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.2); }
+            50% { transform: scale(1); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-content {
+                width: calc(100% - 60px);
+                margin-left: 60px;
+            }
+
+            .timeline-item:nth-child(even) .timeline-content {
+                margin-left: 60px;
+            }
+
+            .timeline-date {
+                left: 20px;
+                transform: translateX(0);
+            }
+
+            .photo-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+        }
+
+        /* Loading Screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ff6b9d 0%, #c06c84 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            transition: opacity 0.5s;
+        }
+
+        .loading-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loading-heart {
+            font-size: 5rem;
+            animation: heartbeat 1s infinite;
+        }
+
+        /* Scroll to Top */
+        .scroll-top {
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            background: #ff6b9d;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+            z-index: 999;
+        }
+
+        .scroll-top.show {
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-heart">💕</div>
+    </div>
+
+    <!-- Floating Hearts Background -->
+    <div class="hearts-background" id="heartsBackground"></div>
+
+    <!-- Interactive Hearts -->
+    <div class="interactive-hearts" id="interactiveHearts"></div>
+
+    <!-- Header -->
+    <header>
+        <h1>💕 สำหรับคนที่รักที่สุดในโลก 💕</h1>
+        <p>ทุกวินาทีที่มีเธอ คือความสุขที่สุดในชีวิต</p>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#hero">🏠 หน้าแรก</a>
+        <a href="#timeline">📅 ไทม์ไลน์</a>
+        <a href="#gallery">📸 ความทรงจำ</a>
+        <a href="#videos">🎬 วิดีโอ</a>
+        <a href="#letters">💌 จดหมาย</a>
+        <a href="#quiz">🎯 เกม</a>
+        <a href="#surprise">🎁 เซอร์ไพรส์</a>
+    </nav>
+
+    <!-- Container -->
+    <div class="container">
+        <!-- Hero Section -->
+        <section id="hero" class="hero-section">
+            <h2>อ้วนคือทุกสิ่งทุกอย่างของเค้า</h2>
+            <p>จากวันแรกที่เจอกัน เค้ารู้เลยว่าอ้วนคือคนพิเศษที่สุด</p>
+            <p>ขอบคุณที่เข้ามาในชีวิต และทำให้ทุกวันของเค้ามีความหมาย ❤️</p>
+        </section>
+
+        <!-- Love Counter -->
+        <section class="love-counter">
+            <h2 class="section-title">💖 นับถอยหลังความรัก 💖</h2>
+            <div class="counter-grid">
+                <div class="counter-item">
+                    <div class="counter-number" id="days">0</div>
+                    <div class="counter-label">วัน</div>
+                </div>
+                <div class="counter-item">
+                    <div class="counter-number" id="hours">0</div>
+                    <div class="counter-label">ชั่วโมง</div>
+                </div>
+                <div class="counter-item">
+                    <div class="counter-number" id="minutes">0</div>
+                    <div class="counter-label">นาที</div>
+                </div>
+                <div class="counter-item">
+                    <div class="counter-number" id="seconds">0</div>
+                    <div class="counter-label">วินาที</div>
+                </div>
+            </div>
+            <p style="margin-top: 2rem; font-size: 1.2rem; color: #d63031;">
+            ตั้งแต่วันที่เราเริ่มต้นด้วยกันจนถึงวันนี้ 💕
+            </p>
+        </section>
+
+        <!-- Timeline -->
+        <section id="timeline" class="timeline-section">
+            <h2 class="section-title">📅 เส้นทางแห่งความรัก 📅</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">21 ก.ค. 2004</div>
+                    <div class="timeline-content">
+                        <h3>วันเกิดอ้วน</h3>
+                        <p>เป็นวันที่คนน่ารักที่สุดในโลกเกิดลงมาที่โลกใบนี้อิอิ</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2 ก.พ. 2024</div>
+                    <div class="timeline-content">
+                        <h3>💕 คุยกันครั้งแรก</h3>
+                        <p>รู้มั้ยว่าอ้วนคือคนคุยที่เค้ารู้สึกว่าอ้วนโอเคที่แล้วมากๆเพราะอ้วน"แบ่งของกินให้เค้ากิน</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">1 มิ.ย. 2024</div>
+                    <div class="timeline-content">
+                        <h3>💝 วันที่เราคบกัน</h3>
+                        <p>"เป็นแฟนกันไหม?" นี่เป็นคำถามที่ทำให้เค้ากลั้นหายใจรอคำตอบ และอ้วนก็ตอบว่า "เป็นค้าบ" 💖</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">11 พ.ค. 2025</div>
+                    <div class="timeline-content">
+                        <h3>🌴 ทริปภูผาม่าน</h3>
+                        <p>ครั้งแรกที่เราเดินทางด้วยกันสองคน ที่ระยะทางไกลมากๆ แต่มีความสุขมากๆ</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">วันนี้</div>
+                    <div class="timeline-content">
+                        <h3>💞 เราจะเดินต่อไปด้วยกันรึเปล่านะ?</h3>
+                        <p>ทุกช่วงเวลาที่ผ่านมาเค้ามีความสุขมากๆ มีความทรงจำมากมาย พอชีวิตมีอ้วนพาเข้ามามันดีมากๆ 💕</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Photo Gallery -->
+        <section id="gallery" class="gallery-section">
+            <h2 class="section-title">📸 ความทรงจำที่สวยงาม 📸</h2>
+            <div class="photo-grid">
+                <div class="photo-item">
+                    <img src="1725448851335.jpg" alt="Memory 1">
+                    <div class="photo-overlay">
+                        <p>🐼 กล่องสุ่มชิ้นแรกที่ซื้อให้อิอิ</p>
+                    </div>
+                </div>
+                <div class="photo-item">
+                    <img src="IMG20241127205442.jpg" alt="Memory 2">
+                    <div class="photo-overlay">
+                        <p>🎨 ระบายสีด้วยกันและมีถ่ายรูปโพลาลอยกันด้วย!</p>
+                    </div>
+                </div>
+                <div class="photo-item">
+                    <img src="IMG20241231202302.jpg" alt="Memory 3">
+                    <div class="photo-overlay">
+                        <p>🍜 แต่ก่อนไปกินบ่อยมาก</p>
+                    </div>
+                </div>
+                <div class="photo-item">
+                    <img src="1734090252609.jpg" alt="Memory 4">
+                    <div class="photo-overlay">
+                        <p>💗 เดตที่รวยมากและอร่อยมากด้วย!!</p>
+                    </div>
+                </div>
+                <div class="photo-item">
+                    <img src="IMG20250406163003.jpg" alt="Memory 5">
+                    <div class="photo-overlay">
+                        <p>🧺 ปิกนิกวาดรูปสวยๆ55555</p>
+                    </div>
+                </div>
+                <div class="photo-item">
+                    <img src="1746971907148.jpg" alt="Memory 6">
+                    <div class="photo-overlay">
+                        <p>⛰️ ภูผาม่าน ทริปที่ไกลที่สุดในชีวิต</p>
+                    </div>
+                </div>
+                <div class="photo-item">
+                    <img src="1727607025379.jpg" alt="Memory 7">
+                    <div class="photo-overlay">
+                        <p>👩‍❤️‍👨 ลูกๆของเรา</p>
+                    </div>
+                </div>
+                <div class="photo-item">
+                    <img src="1746878529683.jpg" alt="Memory 8">
+                    <div class="photo-overlay">
+                        <p>🌹 ของขวัญที่มีค่าทางจิตใจมากๆ</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Video Section -->
+        <section id="videos" class="video-section">
+            <h2 class="section-title">🎬 วิดีโอความทรงจำ 🎬</h2>
+            <div class="video-grid">
+                <div class="video-item">
+                    <video controls>
+                        <source src="1717861731427.mp4" type="video/mp4">
+                        เดินบึงแล้วเจอน้องหมา
+                        </video>
+                    <p style="padding: 1rem; text-align: center; color: #d63031;">🐶 น้อนน่ารักมากกกไอ้ตูบ</p>
+                </div>
+                <div class="video-item">
+                    <video controls>
+                        <source src="VID20241225011253.mp4" type="video/mp4">
+                        การ์ดวันครบรอบ
+                    </video>
+                    <p style="padding: 1rem; text-align: center; color: #d63031;">💕 เกิดมาไม่เคยมีใครทำให้เลยย</p>
+                </div>
+                <div class="video-item">
+                    <video controls>
+                        <source src="1722594979326.mp4" type="video/mp4">
+                        ตลกมาก
+                    </video>
+                    <p style="padding: 1rem; text-align: center; color: #d63031;">🤣 ตบหัวกุลั่นเลย5555555</p>
+                </div>
+                <div class="video-item">
+                    <video controls>
+                        <source src="VID20241130222658.mp4" type="video/mp4">
+                        เที่ยว4สาวเรา
+                    </video>
+                    <p style="padding: 1rem; text-align: center; color: #d63031;">💕 มองอ้วนเป็นเด็กน้อยตลอดเวลา</p>
+                </div>
+                <div class="video-item">
+                    <video controls>
+                        <source src="lv_0_20240904180034.mp4" type="video/mp4">
+                        ช่วงกำลังฮิตกลุ่องสุ่ม
+                    </video>
+                    <p style="padding: 1rem; text-align: center; color: #d63031;">🐼 แกะกล่องสุ่มครั้งแรก!</p>
+                </div>
+                <div class="video-item">
+                    <video controls>
+                        <source src="1758181483658.mp4" type="video/mp4">
+                        เต้นเสี่ยวๆ
+                    </video>
+                    <p style="padding: 1rem; text-align: center; color: #d63031;">🎉 เต้นไปเรื่อยยย</p>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 2rem; font-style: italic; color: #666;">
+                มีวิดีโออีกเยอะเลยนะ แต่เอามาลงไม่หมดหรอกอิอิ
+            </p>
+        </section>
+
+        <!-- Love Letters -->
+        <section id="letters" class="letters-section">
+            <h2 class="section-title">💌 จดหมายความรัก 💌</h2>
+            
+            <div class="letter-card">
+                <h3>ถึงคนที่รักที่สุด</h3>
+                <p>
+                    อ้วนรู้มั้ย.... วันไหนที่อ้วนอยู่ไกลจากเค้า เค้าอดเป็นห่วงไม่ได้เลย
+                    รู้สึกเป็นห่วงว่าจะอยู่ยังไง จะมีคนอื่นเผ่านเข้ามาทำให้อ้วนชอบมั้ย...
+                    พูดตรงๆเค้าหวงอ้วนมากๆ ตั้งแต่อ้วนหายไป มันทำให้เค้ารู้ว่าสิ่งที่มีค่าในชีวิตเค้ามากๆ
+                    คือ"อ้วน" เค้ากินไม่ได้นอนไม่หลับ ใช้ชีวิตลำบากมากๆ เค้านึกว่าเราจะไม่ได้เจอกันอีกแล้ว
+                    จนถึงวันนี้ ที่เราได้อยู่ด้วยกันอีก แลัเค้าก็อยากให้อ้วนอยู่ด้วยกันแบบนี้ไปนานๆตลอดชีวิตเค้าเลยครับ 💕
+                </p>
+            </div>
+
+            <div class="letter-card">
+                <h3>สิ่งที่เค้าชอบในตัวอ้วน</h3>
+                <p>
+                    เค้าชอบรอยยิ้มของอ้วน ที่ทำให้วันเลวร้ายกลายเป็นวันที่ดีขึ้น<br>
+                    เค้าชอบที่อ้วนแบ่งของกิน มันทำให้เค้ารู้สึกชอบอ้วนตั้งแต่แรกเจอ<br>
+                    เค้าชอบความเอาใจใส่ของอ้วน ที่มีให้กับทุกคนรอบตัว<br>
+                    เค้าชอบทุกอย่างในตัวอ้วน แม้แต่ข้อบกพร่องเล็กๆ น้อยๆ<br>
+                    เพราะนั่นแหละคือตัวตนที่แท้จริงของอ้วนที่เค้าหลงรัก ❤️
+                </p>
+            </div>
+
+            <div class="letter-card">
+                <h3>สัญญาของเค้า</h3>
+                <p>
+                    เค้าสัญญาว่าจะอยู่เคียงข้างอ้วนเสมอ ไม่ว่าจะเกิดอะไรขึ้น<br>
+                    เค้าสัญญาว่าจะทำให้อ้วนยิ้มทุกวัน แม้ในวันที่อ้วนเศร้า<br>
+                    เค้าสัญญาว่าจะรักษาและปกป้องอ้วนเสมอ<br>
+                    เค้าสัญญาว่าจะรักอ้วนด้วยหัวใจที่จริงใจที่สุด<br>
+                    และเค้าสัญญาว่าจะทำให้อ้วนเป็นคนที่มีความสุขที่สุดในโลก 💖
+                </p>
+            </div>
+        </section>
+
+        <!-- Memories Map -->
+        <section class="map-section">
+            <h2 class="section-title">🗺️ สถานที่แห่งความทรงจำ 🗺️</h2>
+            <div class="map-grid">
+                <div class="map-item">
+                    <div class="map-icon">🏠</div>
+                    <h4>ดิออโรร่า</h4>
+                    <p>ที่เราเจอกันครั้งแรก</p>
+                </div>
+                <div class="map-item">
+                    <div class="map-icon">🎬</div>
+                    <h4>เซนทรัล</h4>
+                    <p>เป็นที่ๆเราไปดูหนังกินข้าวช้อปปิ้งบ่อยมากๆ</p>
+                </div>
+                <div class="map-item">
+                    <div class="map-icon">🌳</div>
+                    <h4>บึงสีฐาน</h4>
+                    <p>ที่เราเดินเล่นด้วยกัน</p>
+                </div>
+                <div class="map-item">
+                    <div class="map-icon">🍜</div>
+                    <h4>ร้านอาหาร</h4>
+                    <p>ไปแทบทุกที่ในขอนแก่น</p>
+                </div>
+                <div class="map-item">
+                    <div class="map-icon">🎆</div>
+                    <h4>งานเทศกาล</h4>
+                    <p>ไปแทบทุกเทศกาล</p>
+                </div>
+                <div class="map-item">
+                    <div class="map-icon">🏔️</div>
+                    <h4>ภูผาม่าน</h4>
+                    <p>กินเที่ยวนอนฟิน</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quiz Section -->
+        <section id="quiz" class="quiz-section">
+            <h2 class="section-title">🎯 เกมรู้จักกัน 🎯</h2>
+            
+            <div class="quiz-question">
+                <h3>คำถามที่ 1: เราคบกันวันที่เท่าไหร่?</h3>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, false)"> 14 กุมภาพันธ์</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)"> 1 มิถุนายน</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)"> 1 มีนาคม</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)"> 14 มีนาคม</div>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <h3>คำถามที่ 2: ร้านอาหารที่เราชอบไปด้วยกันบ่อยที่สุด</h3>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, true)"> โออิชิราเมง</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)"> สเต็กนายโก๋</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)"> กากเจียว</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)"> ห้องอ้วน(สั่งอาหาร)</div>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <h3>คำถามที่ 3: รักเค้ามั้ย?</h3>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">รัก</div> 
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">รัก</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">รัก</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)"> รัก</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Surprise Section -->
+        <section id="surprise" class="surprise-section">
+            <h2 style="font-size: 2.5rem; color: white; margin-bottom: 1rem;">
+                🎁 มีอะไรพิเศษให้เธอ 🎁
+            </h2>
+            <p style="font-size: 1.3rem; color: white; margin-bottom: 2rem;">
+                กดปุ่มด้านล่างเพื่อเปิดของขวัญ
+            </p>
+            <button class="surprise-btn" onclick="openSurprise()">
+                🎀 ลองเปิดดูสิ 🎀
+            </button>
+        </section>
+    </div>
+
+    <!-- Surprise Modal -->
+    <div class="surprise-modal" id="surpriseModal">
+        <div class="surprise-content">
+            <button class="surprise-close" onclick="closeSurprise()">✖</button>
+            <h2 style="color: #d63031; margin-bottom: 1rem;">💝 สำหรับคนพิเศษ 💝</h2>
+            <img src="1746971794445.jpg" alt="Our Photo" class="surprise-image">
+            <p class="surprise-text">
+                ขอบคุณที่ทำให้ทุกวันมีความหมาย<br>
+                ขอบคุณที่รักเค้าในแบบที่เค้าเป็น<br>
+                และขอบคุณที่ให้เค้าได้รักอ้วน<br>
+                เริ่มต้นด้วยกันใหม่อีกครั้งนะอ้วน<br>
+                <strong style="font-size: 1.5rem; color: #d63031;">เรากลับมาคบกันได้มั้ยครับ 💕</strong>
+            </p>
+            <div style="margin-top: 2rem;">
+                <div style="font-size: 3rem;">💐🌹🌺🌸🌼</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Music Player -->
+    <div class="music-player">
+        <button class="music-btn" onclick="toggleMusic()" id="musicBtn">🎵</button>
+        <div class="music-info" id="musicInfo">
+            <div>เพลงประกอบ</div>
+            <small>Playing...</small>
+        </div>
+        <audio id="bgMusic" loop>
+            <source src="รสหวาน _ FREEHAND (Official MV).mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <!-- Scroll to Top -->
+    <button class="scroll-top" id="scrollTop" onclick="scrollToTop()">⬆️</button>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-heart">💕</div>
+        <h3 style="margin: 1rem 0;">Made with Love</h3>
+        <p>สร้างด้วยความรักจากใจ เพื่ออ้วนที่รักที่สุด</p>
+        <p style="margin-top: 1rem; opacity: 0.8;">
+            © ความทรงจำที่สวยงาม | ❤️ Always & Forever ❤️
+        </p>
+    </footer>
+
+    <script>
+        // Loading Screen
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loadingScreen').classList.add('hidden');
+            }, 2000);
+        });
+
+        // Floating Hearts Background
+               // Floating Hearts Background
+        function createFloatingHearts() {
+            const heartsContainer = document.getElementById('heartsBackground');
+            const hearts = ['💕', '💖', '💗', '💝', '💞', '💓', '❤️', '🧡', '💛', '💚', '💙', '💜', '🤍', '🤎'];
+            
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.classList.add('heart-float');
+                heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+                heartsContainer.appendChild(heart);
+                
+                setTimeout(() => {
+                    heart.remove();
+                }, 15000);
+            }, 500);
+        }
+        createFloatingHearts();
+
+        // Love Counter
+        function updateCounter() {
+            const startDate = new Date('2024-02-02T00:00:00'); // วันที่เริ่มต้นความรัก
+            const now = new Date();
+            const diff = now - startDate;
+            
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').textContent = days;
+            document.getElementById('hours').textContent = hours;
+            document.getElementById('minutes').textContent = minutes;
+            document.getElementById('seconds').textContent = seconds;
+        }
+        setInterval(updateCounter, 1000);
+        updateCounter();
+
+        // Quiz Function
+        function checkAnswer(element, isCorrect) {
+            const options = element.parentElement.querySelectorAll('.quiz-option');
+            options.forEach(opt => opt.style.pointerEvents = 'none');
+            
+            if (isCorrect) {
+                element.classList.add('correct');
+                setTimeout(() => {
+                    createConfetti();
+                    alert('ถูกต้อง! เก่งมาก ❤️');
+                }, 300);
+            } else {
+                element.classList.add('wrong');
+                setTimeout(() => {
+                    alert('ผิดแล้วจ้า ลองใหม่นะ 😊');
+                }, 300);
+            }
+        }
+
+        // Confetti Effect
+        function createConfetti() {
+            const colors = ['#ff6b9d', '#c06c84', '#ffa8c5', '#ff9a9e', '#fad0c4'];
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.style.cssText = `
+                    position: fixed;
+                    width: 10px;
+                    height: 10px;
+                    background: ${colors[Math.floor(Math.random() * colors.length)]};
+                    left: ${Math.random() * 100}%;
+                    top: -10px;
+                    opacity: 1;
+                    z-index: 9999;
+                    animation: fall ${Math.random() * 3 + 2}s linear forwards;
+                `;
+                document.body.appendChild(confetti);
+                
+                setTimeout(() => confetti.remove(), 5000);
+            }
+        }
+
+        // Add CSS for confetti animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fall {
+                to {
+                    transform: translateY(100vh) rotate(${Math.random() * 360}deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Surprise Modal Functions
+        function openSurprise() {
+            const modal = document.getElementById('surpriseModal');
+            modal.classList.add('active');
+            createBalloons();
+            playSound();
+        }
+
+        function closeSurprise() {
+            document.getElementById('surpriseModal').classList.remove('active');
+        }
+
+        // Create Flying Balloons
+        function createBalloons() {
+            const balloons = ['🎈', '🎈', '🎈', '💕', '💖', '💝', '❤️'];
+            const colors = ['red', 'pink', 'purple', 'hotpink'];
+            
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const balloon = document.createElement('div');
+                    balloon.classList.add('balloon');
+                    balloon.textContent = balloons[Math.floor(Math.random() * balloons.length)];
+                    balloon.style.left = Math.random() * 100 + '%';
+                    balloon.style.setProperty('--x', (Math.random() - 0.5) * 200 + 'px');
+                    balloon.style.animationDuration = (Math.random() * 2 + 3) + 's';
+                    document.body.appendChild(balloon);
+                    
+                    setTimeout(() => balloon.remove(), 5000);
+                }, i * 100);
+            }
+        }
+
+        // Play Celebration Sound
+        function playSound() {
+            const audio = new Audio();
+            // You can add a celebration sound here
+            // audio.src = 'celebration.mp3';
+            // audio.play().catch(e => console.log('Audio play failed'));
+        }
+
+        // Music Player
+        let isPlaying = false;
+        function toggleMusic() {
+            const music = document.getElementById('bgMusic');
+            const btn = document.getElementById('musicBtn');
+            const info = document.getElementById('musicInfo');
+            
+            if (isPlaying) {
+                music.pause();
+                btn.textContent = '🎵';
+                info.classList.remove('playing');
+                isPlaying = false;
+            } else {
+                music.play().then(() => {
+                    btn.textContent = '⏸️';
+                    info.classList.add('playing');
+                    isPlaying = true;
+                }).catch(e => {
+                    alert('กรุณาเพิ่มไฟล์เพลง "your-love-song.mp3" ในโฟลเดอร์เดียวกัน');
+                });
+            }
+        }
+
+        // Interactive Hearts on Click
+        document.addEventListener('click', (e) => {
+            const heartsContainer = document.getElementById('interactiveHearts');
+            const heart = document.createElement('div');
+            heart.classList.add('click-heart');
+            heart.textContent = '❤️';
+            heart.style.left = e.pageX + 'px';
+            heart.style.top = e.pageY + 'px';
+            heartsContainer.appendChild(heart);
+            
+            setTimeout(() => heart.remove(), 2000);
+        });
+
+        // Smooth Scroll
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll to Top Button
+        window.addEventListener('scroll', () => {
+            const scrollTop = document.getElementById('scrollTop');
+            if (window.pageYOffset > 300) {
+                scrollTop.classList.add('show');
+            } else {
+                scrollTop.classList.remove('show');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Photo Gallery Click to Enlarge
+        document.querySelectorAll('.photo-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const img = this.querySelector('img');
+                const modal = document.createElement('div');
+                modal.style.cssText = `
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0,0,0,0.9);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    z-index: 10000;
+                    cursor: pointer;
+                `;
+                
+                const enlargedImg = document.createElement('img');
+                enlargedImg.src = img.src;
+                enlargedImg.style.cssText = `
+                    max-width: 90%;
+                    max-height: 90%;
+                    border-radius: 10px;
+                    box-shadow: 0 0 50px rgba(255,255,255,0.3);
+                `;
+                
+                modal.appendChild(enlargedImg);
+                document.body.appendChild(modal);
+                
+                modal.addEventListener('click', () => modal.remove());
+            });
+        });
+
+        // Timeline Animation on Scroll
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.timeline-content').forEach(item => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(30px)';
+            item.style.transition = 'all 0.6s ease-out';
+            observer.observe(item);
+        });
+
+        // Random Love Quotes
+        const loveQuotes = [
+            "รักอ้วนมากกว่าเมื่อวาน แต่น้อยกว่าพรุ่งนี้ 💕",
+            "อ้วนคือเหตุผลที่เค้ายิ้มทุกวัน 😊",
+            "ในทุกๆ วินาทีของชีวิต เค้าเลือกที่จะรักอ้วน ❤️",
+            "อ้วนคือความฝันที่เค้าไม่อยากตื่น 💭",
+            "ขอบคุณที่เป็นทุกสิ่งทุกอย่างของเค้า 🌟",
+            "รักอ้วนไม่มีวันสิ้นสุด ∞",
+            "อ้วนทำให้โลกของเค้าสดใสขึ้น 🌈",
+            "เค้าโชคดีที่ได้มีอ้วน 🍀"
+        ];
+
+        // Show Random Quote Every 10 Seconds
+        setInterval(() => {
+            const quote = loveQuotes[Math.floor(Math.random() * loveQuotes.length)];
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: linear-gradient(135deg, #ff6b9d 0%, #c06c84 100%);
+                color: white;
+                padding: 1rem 2rem;
+                border-radius: 10px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+                z-index: 9998;
+                animation: slideInRight 0.5s, slideOutRight 0.5s 4.5s;
+                max-width: 300px;
+            `;
+            notification.textContent = quote;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => notification.remove(), 5000);
+        }, 10000);
+
+        // Add animations for notifications
+        const animStyle = document.createElement('style');
+        animStyle.textContent = `
+            @keyframes slideInRight {
+                from {
+                    transform: translateX(400px);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+            @keyframes slideOutRight {
+                from {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+                to {
+                    transform: translateX(400px);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(animStyle);
+
+        // Memory Map Click
+        document.querySelectorAll('.map-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const place = this.querySelector('h4').textContent;
+                const memory = this.querySelector('p').textContent;
+                
+                const popup = document.createElement('div');
+                popup.style.cssText = `
+                    position: fixed;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    background: white;
+                    padding: 2rem;
+                    border-radius: 15px;
+                    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+                    z-index: 9999;
+                    text-align: center;
+                    min-width: 300px;
+                    animation: zoomIn 0.3s;
+                `;
+                popup.innerHTML = `
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">${this.querySelector('.map-icon').textContent}</div>
+                    <h3 style="color: #d63031; margin-bottom: 0.5rem;">${place}</h3>
+                    <p style="color: #666; margin-bottom: 1rem;">${memory}</p>
+                    <button onclick="this.parentElement.remove()" style="
+                        background: #ff6b9d;
+                        color: white;
+                        border: none;
+                        padding: 0.5rem 2rem;
+                        border-radius: 20px;
+                        cursor: pointer;
+                        font-size: 1rem;
+                    ">ปิด</button>
+                `;
+                document.body.appendChild(popup);
+            });
+        });
+
+        // Easter Egg: Konami Code
+        let konamiCode = [];
+        const konamiSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+        
+        document.addEventListener('keydown', (e) => {
+            konamiCode.push(e.key);
+            konamiCode = konamiCode.slice(-10);
+            
+            if (konamiCode.join(',') === konamiSequence.join(',')) {
+                secretSurprise();
+            }
+        });
+
+        function secretSurprise() {
+            alert('🎊 คุณพบความลับ! 🎊\n\nรหัสความรักของเรา: 143 (I Love You) ❤️');
+            createConfetti();
+            
+            // Create special heart rain
+            for (let i = 0; i < 100; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.textContent = '💕';
+                    heart.style.cssText = `
+                        position: fixed;
+                        font-size: 2rem;
+                        left: ${Math.random() * 100}%;
+                        top: -50px;
+                        animation: fall 3s linear forwards;
+                        z-index: 9999;
+                    `;
+                    document.body.appendChild(heart);
+                    setTimeout(() => heart.remove(), 3000);
+                }, i * 30);
+            }
+        }
+
+        // Double Click Easter Egg
+        let clickCount = 0;
+        document.querySelector('header h1').addEventListener('click', () => {
+            clickCount++;
+            if (clickCount === 3) {
+                clickCount = 0;
+                const messages = [
+                    "รักเธอมากกว่าที่คิด 💕",
+                    "เธอคือดาวดวงโปรดของฉัน ⭐",
+                    "ไม่มีใครทดแทนเธอได้ 💖",
+                    "Forever and Always 💍"
+                ];
+                alert(messages[Math.floor(Math.random() * messages.length)]);
+            }
+        });
+
+        // Countdown to Special Day (ปรับเป็นวันพิเศษของคุณ)
+        function countdownToSpecialDay() {
+            const specialDay = new Date('2024-12-31T00:00:00'); // เปลี่ยนเป็นวันพิเศษของคุณ
+            const now = new Date();
+            const diff = specialDay - now;
+            
+            if (diff > 0) {
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                
+                if (days <= 30 && days > 0) {
+                    const banner = document.createElement('div');
+                    banner.style.cssText = `
+                        position: fixed;
+                        top: 70px;
+                        left: 0;
+                        right: 0;
+                        background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+                        color: #d63031;
+                        padding: 1rem;
+                        text-align: center;
+                        font-weight: bold;
+                        z-index: 98;
+                        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+                    `;
+                    banner.innerHTML = `
+                        🎉 อีก ${days} วัน ถึงวันพิเศษของเรา! 🎉
+                    `;
+                    document.body.appendChild(banner);
+                }
+            }
+        }
+        countdownToSpecialDay();
+
+        // Save Scroll Position
+        window.addEventListener('beforeunload', () => {
+            localStorage.setItem('scrollPosition', window.pageYOffset);
+        });
+
+        window.addEventListener('load', () => {
+            const scrollPosition = localStorage.getItem('scrollPosition');
+            if (scrollPosition) {
+                window.scrollTo(0, parseInt(scrollPosition));
+            }
+        });
+
+        // Add Sparkle Effect on Hover
+        document.querySelectorAll('.product-card, .photo-item, .letter-card').forEach(element => {
+            element.addEventListener('mouseenter', function(e) {
+                createSparkle(e.pageX, e.pageY);
+            });
+        });
+
+        function createSparkle(x, y) {
+            const sparkle = document.createElement('div');
+            sparkle.textContent = '✨';
+            sparkle.style.cssText = `
+                position: absolute;
+                left: ${x}px;
+                top: ${y}px;
+                font-size: 1.5rem;
+                pointer-events: none;
+                animation: sparkleAnim 1s ease-out forwards;
+                z-index: 9999;
+            `;
+            document.body.appendChild(sparkle);
+            setTimeout(() => sparkle.remove(), 1000);
+        }
+
+        const sparkleStyle = document.createElement('style');
+        sparkleStyle.textContent = `
+            @keyframes sparkleAnim {
+                0% {
+                    transform: scale(0) rotate(0deg);
+                    opacity: 1;
+                }
+                100% {
+                    transform: scale(1.5) rotate(180deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(sparkleStyle);
+
+        // Progress Bar
+        const progressBar = document.createElement('div');
+        progressBar.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #ff6b9d, #c06c84);
+            z-index: 10001;
+            transition: width 0.1s;
+        `;
+        document.body.appendChild(progressBar);
+
+        window.addEventListener('scroll', () => {
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight - windowHeight;
+            const scrolled = window.pageYOffset;
+            const progress = (scrolled / documentHeight) * 100;
+            progressBar.style.width = progress + '%';
+        });
+
+        // Typing Effect for First Load
+        function typeWriter(element, text, speed = 50) {
+            let i = 0;
+            const originalText = element.textContent;
+            element.textContent = '';
+            
+            function type() {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
+
+        // Auto save visited
+        if (!localStorage.getItem('visited')) {
+            setTimeout(() => {
+                const welcome = document.createElement('div');
+                welcome.style.cssText = `
+                    position: fixed;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    background: white;
+                    padding: 3rem;
+                    border-radius: 20px;
+                    box-shadow: 0 10px 50px rgba(0,0,0,0.3);
+                    z-index: 10002;
+                    text-align: center;
+                    max-width: 500px;
+                `;
+                welcome.innerHTML = `
+                    <h2 style="color: #d63031; margin-bottom: 1rem;">💕 ยินดีต้อนรับ 💕</h2>
+                    <p style="line-height: 1.8; color: #666; margin-bottom: 2rem;">
+                        นี่คือเว็บไซต์พิเศษที่ฉันสร้างขึ้นเพื่อเธอ
+                        เพื่อบอกว่าเธอมีความหมายกับฉันแค่ไหน
+                        ขอให้เธอสนุกกับทุกส่วนของเว็บไซต์นะ ❤️
+                    </p>
+                    <button onclick="this.parentElement.remove()" style="
+                        background: linear-gradient(135deg, #ff6b9d 0%, #c06c84 100%);
+                        color: white;
+                        border: none;
+                        padding: 1rem 2rem;
+                        border-radius: 25px;
+                        cursor: pointer;
+                        font-size: 1.1rem;
+                    ">เริ่มเลย 💖</button>
+                `;
+                document.body.appendChild(welcome);
+                localStorage.setItem('visited', 'true');
+            }, 3000);
+        }
+
+        // Console Easter Egg
+        console.log('%c💕 สำหรับคนพิเศษ 💕', 'font-size: 30px; color: #ff6b9d; font-weight: bold;');
+        console.log('%cถ้าเธอเห็นข้อความนี้... ฉันก็อยากบอกว่า ฉันรักเธอมากๆ นะ ❤️', 'font-size: 16px; color: #c06c84;');
+        console.log('%cป.ล. ลอง กด header 3 ครัง หรือพิมพ์โค้ด Konami ดูสิ 😉', 'font-size: 14px; color: #666;');
+
+        // Print message when user tries to close tab
+        window.addEventListener('beforeunload', (e) => {
+            e.preventDefault();
+            e.returnValue = 'จะไปแล้วเหรอ? 🥺 กลับมาเร็วๆ นะ ❤️';
+        });
+
+    </script>
+</body>
+</html>

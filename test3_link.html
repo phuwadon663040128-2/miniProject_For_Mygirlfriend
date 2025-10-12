@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💕 For My Love 💕</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            overflow-x: hidden;
+        }
+
+        /* Floating Hearts Background */
+        .hearts-background {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .heart-float {
+            position: absolute;
+            font-size: 20px;
+            animation: floatHeart 15s infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes floatHeart {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.3;
+            }
+            90% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #ff6b9d 0%, #c06c84 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(255, 107, 157, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        header p {
+            font-size: 1.2rem;
+            font-style: italic;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 120px;
+            z-index: 99;
+        }
+
+        nav a {
+            color: #ff6b9d;
+            text-decoration: none;
+            margin: 0 1.5rem;
+            font-weight: bold;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        nav a:hover {
+            transform: scale(1.2);
+            color: #c06c84;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+            border-radius: 20px;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '💕';
+            position: absolute;
+            font-size: 15rem;
+            opacity: 0.1;
+            top: -50px;
+            right: -50px;
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .hero-section h2 {
+            font-size: 2.5rem;
+            color: #d63031;
+            margin-bottom: 1rem;
+        }
+
+        .hero-section p {
+            font-size: 1.3rem;
+            color: #2d3436;
+            line-height: 1.8;
+        }
+
+        /* Counter Section */
+        .love-counter {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 3rem;
+            box-shadow: 0 5px 15px rgba(255, 107, 157, 0.2);
+        }
+
+        .counter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .counter-item {
+            background: linear-gradient(135deg, #ff6b9d 0%, #ffa8c5 100%);
+            padding: 1.5rem;
+            border-radius: 10px;
+            color: white;
+        }
+
+        .counter-number {
+            font-size: 3rem;
+            font-weight: bold;
+        }
+
+        .counter-label {
+            font-size: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Timeline Section */
+        .timeline-section {
+            margin-bottom: 3rem;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, #ff6b9d, #ffa8c5);
+        }
+
+        .timeline-item {
+            display: flex;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            width: 45%;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+            animation: slideIn 0.5s;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .timeline-date {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #ff6b9d;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+            width: 150px;
+            text-align: center;
+        }
+
+        /* Photo Gallery */
+        .gallery-section {
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #d63031;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .photo-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .photo-item:hover {
+            transform: scale(1.05) rotate(2deg);
+        }
+
+        .photo-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .photo-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            padding: 1rem;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+
+        .photo-item:hover .photo-overlay {
+            transform: translateY(0);
+        }
+
+        /* Video Section */
+        .video-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 3rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .video-item {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+
+        .video-item video {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        /* Love Letters */
+        .letters-section {
+            margin-bottom: 3rem;
+        }
+
+        .letter-card {
+            background: linear-gradient(135deg, #fff5f5 0%, #ffe8e8 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 15px rgba(255, 107, 157, 0.2);
+            border-left: 5px solid #ff6b9d;
+            position: relative;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .letter-card::before {
+            content: '💌';
+            position: absolute;
+            font-size: 3rem;
+            top: 1rem;
+            right: 1rem;
+            opacity: 0.2;
+        }
+
+        .letter-card h3 {
+            color: #d63031;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .letter-card p {
+            line-height: 1.8;
+            color: #2d3436;
+            font-size: 1.1rem;
+        }
+
+        /* Surprise Button */
+        .surprise-section {
+            text-align: center;
+            margin: 4rem 0;
+            padding: 3rem;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .surprise-btn {
+            background: linear-gradient(135deg, #ff6b9d 0%, #c06c84 100%);
+            color: white;
+            border: none;
+            padding: 1.5rem 3rem;
+            font-size: 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 107, 157, 0.4);
+            transition: all 0.3s;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .surprise-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(255, 107, 157, 0.6);
+        }
+
+        /* Surprise Modal */
+        .surprise-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .surprise-modal.active {
+            display: flex;
+        }
+
+        .surprise-content {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            max-width: 600px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            animation: zoomIn 0.5s;
+            box-shadow: 0 10px 50px rgba(255, 107, 157, 0.5);
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .surprise-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: #ff6b9d;
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .surprise-image {
+            width: 100%;
+            max-height: 300px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin: 1rem 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .surprise-text {
+            font-size: 1.3rem;
+            color: #d63031;
+            margin: 1.5rem 0;
+            line-height: 1.8;
+        }
+
+        /* Balloon Animation */
+        .balloon {
+            position: fixed;
+            font-size: 3rem;
+            animation: flyBalloon 5s ease-out forwards;
+            z-index: 1999;
+        }
+
+        @keyframes flyBalloon {
+            0% {
+                transform: translateY(100vh) translateX(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(var(--x)) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Music Player */
+        .music-player {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #ff6b9d 0%, #c06c84 100%);
+            padding: 1rem;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .music-btn {
+            background: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+
+        .music-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .music-info {
+            color: white;
+            display: none;
+        }
+
+        .music-info.playing {
+            display: block;
+        }
+
+        /* Interactive Heart */
+        .interactive-hearts {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        .click-heart {
+            position: absolute;
+            font-size: 2rem;
+            animation: floatUp 2s ease-out forwards;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) scale(0);
+                opacity: 0;
+            }
+        }
+
+        /* Quiz Section */
+        .quiz-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 3rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .quiz-question {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 100%);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .quiz-options {
+            display: grid;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .quiz-option {
+            background: white;
+            padding: 1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .quiz-option:hover {
+            background: #fff5f5;
+            border-color: #ff6b9d;
+            transform: translateX(10px);
+        }
+
+        .quiz-option.correct {
+            background: #00b894;
+            color: white;
+            border-color: #00b894;
+        }
+
+        .quiz-option.wrong {
+            background: #d63031;
+            color: white;
+            border-color: #d63031;
+        }
+
+        /* Memories Map */
+        .map-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 3rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .map-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .map-item {
+            background: linear-gradient(135deg, #fff5f5 0%, #ffe8e8 100%);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .map-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(255, 107, 157, 0.3);
+        }
+
+        .map-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #c06c84 0%, #6c5b7b 100%);
+            color: white;
+            padding: 3rem 0 1rem;
+            text-align: center;
+        }
+
+        .footer-heart {
+            font-size: 3rem;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.2); }
+            50% { transform: scale(1); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-content {
+                width: calc(100% - 60px);
+                margin-left: 60px;
+            }
+
+            .timeline-item:nth-child(even) .timeline-content {
+                margin-left: 60px;
+            }
+
+            .timeline-date {
+                left: 20px;
+                transform: translateX(0);
+            }
+
+            .photo-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+        }
+
+        /* Loading Screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ff6b9d 0%, #c06c84 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            transition: opacity 0.5s;
+        }
+
+        .loading-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loading-heart {
+            font-size: 5rem;
+            animation: heartbeat 1s infinite;
+        }
+
+        /* Scroll to Top */
+        .scroll-top {
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            background: #ff6b9d;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+            z-index: 999;
+        }
+
+        .scroll-top.show {
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-heart">💕</div>
+    </div>
+
+    <!-- Floating Hearts Background -->
+    <div class="hearts-background" id="heartsBackground"></div>
+
+    <!-- Interactive Hearts -->
+    <div class="interactive-hearts" id="interactiveHearts"></div>
+
+    <!-- Header -->
+    <header>
+        <h1>💕 สำหรับคนที่รักที่สุดในโลก 💕</h1>
+        <p>ทุกวินาทีที่มีเธอ คือความสุขที่สุดในชีวิต</p>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#hero">🏠 หน้าแรก</a>
+        <a href="#timeline">📅 ไทม์ไลน์</a>
+        <a href="#gallery">📸 ความทรงจำ</a>
+        <a href="#videos">🎬 วิดีโอ</a>
+        <a href="#letters">💌 จดหมาย</a>
+        <a href="#quiz">🎯 เกม</a>
+        <a href="#surprise">🎁 เซอร์ไพรส์</a>
+    </nav>
+
+    <!-- Container -->
+    <div class="container">
+        <!-- Hero Section -->
+        <section id="hero" class="hero-section">
+            <h2>เธอคือทุกสิ่งทุกอย่างของฉัน</h2>
+            <p>จากวันแรกที่เจอกัน ฉันรู้เลยว่าเธอคือคนพิเศษที่สุด</p>
+            <p>ขอบคุณที่เข้ามาในชีวิต และทำให้ทุกวันของฉันมีความหมาย ❤️</p>
+        </section>
+
+        <!-- Love Counter -->
+        <section class="love-counter">
+            <h2 class="section-title">💖 นับถอยหลังความรัก 💖</h2>
+            <div class="counter-grid">
+                <div class="counter-item">
+                    <div class="counter-number" id="days">0</div>
+                    <div class="counter-label">วัน</div>
+                </div>
+                <div class="counter-item">
+                    <div class="counter-number" id="hours">0</div>
+                    <div class="counter-label">ชั่วโมง</div>
+                </div>
+                <div class="counter-item">
+                    <div class="counter-number" id="minutes">0</div>
+                    <div class="counter-label">นาที</div>
+                </div>
+                <div class="counter-item">
+                    <div class="counter-number" id="seconds">0</div>
+                    <div class="counter-label">วินาที</div>
+                </div>
+            </div>
+            <p style="margin-top: 2rem; font-size: 1.2rem; color: #d63031;">
+                ตั้งแต่วันที่เราเริ่มต้นความรัก 💕
+            </p>
+        </section>
+
+        <!-- Timeline -->
+        <section id="timeline" class="timeline-section">
+            <h2 class="section-title">📅 เส้นทางแห่งความรัก 📅</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">14 ก.พ. 2023</div>
+                    <div class="timeline-content">
+                        <h3>💕 วันแรกที่เจอกัน</h3>
+                        <p>วันนั้นฉันไม่เคยคิดเลยว่าจะได้เจอคนที่ทำให้หัวใจเต้นแรงขนาดนี้ เธอยิ้มให้ และฉันก็รู้ว่านี่แหละคือรัก</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">1 มี.ค. 2023</div>
+                    <div class="timeline-content">
+                        <h3>🎬 เดทครั้งแรก</h3>
+                        <p>เราไปดูหนังด้วยกัน ฉันตื่นเต้นมากจนจำเรื่องในหนังไม่ได้เลย เพราะมัวแต่มองเธออยู่</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">20 มี.ค. 2023</div>
+                    <div class="timeline-content">
+                        <h3>💝 วันที่สารภาพรัก</h3>
+                        <p>"เป็นแฟนกันไหม?" นี่เป็นคำถามที่ทำให้ฉันกลั้นหายใจรอคำตอบ และเธอก็ตอบว่า "ใช่" 💖</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">15 เม.ย. 2023</div>
+                    <div class="timeline-content">
+                        <h3>🌴 ทริปทะเลด้วยกัน</h3>
+                        <p>ครั้งแรกที่เราเดินทางด้วยกันสองคน ทะเลสวยมาก แต่ก็ไม่สวยเท่าเธอ</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">วันนี้</div>
+                    <div class="timeline-content">
+                        <h3>💞 และเราจะเดินต่อไปด้วยกัน</h3>
+                        <p>ทุกวันที่ผ่านไป ฉันยิ่งรักเธอมากขึ้นทุกที ขอบคุณที่เป็นส่วนหนึ่งในชีวิตของฉัน และฉันสัญญาว่าจะอยู่เคียงข้างเธอตลอดไป 💕</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Photo Gallery -->
+        <section id="gallery" class="gallery-section">
+            <h2 class="section-title">📸 ความทรงจำที่สวยงาม 📸</h2>
+            <div class="photo-grid">
+                <div class="photo-item">
+                    <img src="https://source.unsplash.com/400x300/?couple,love" alt="Memory 1">
+                    <div class="photo-overlay">
+                        <p>💕 วันแรกที่เจอกัน</p>
+                    </div>
+                </div>
+                <div class="photo-item">
+                    <img src="https://source.unsplash.com/400x300/?romantic,dinner" alt="Memory 2">
+                    <div class="photo-overlay">
+                        <p>🍽️ ดินเนอร์สุดโรแมนติก</p>
+                    </div>
+                </div>
+                <div class="photo-item">
+                    <img src="https://source.unsplash.com/400x300/?beach,couple" alt="Memory 3">
+                    <div class="photo-overlay">
+                        <p>🌊 ทริปทะเลด้วยกัน</p>
+                    </div>
+                </div>
+                <div class="photo-item">
+                    <img src="https://source.unsplash.com/400x300/?sunset,love" alt="Memory 4">
+                    <div class="photo-overlay">
+                        <p>🌅 ชมพระอาทิตย์ตก</p>
+                    </div>
+                </div>
+                <div class="photo-item">
+                    <img src="https://source.unsplash.com/400x300/?picnic,romantic" alt="Memory 5">
+                    <div class="photo-overlay">
+                        <p>🧺 ปิกนิกในสวน</p>
+                    </div>
+                </div>
+                <div class="photo-item">
+                    <img src="https://source.unsplash.com/400x300/?mountain,couple" alt="Memory 6">
+                    <div class="photo-overlay">
+                        <p>⛰️ เที่ยวภูเขา</p>
+                    </div>
+                </div>
+                <div class="photo-item">
+                    <img src="https://source.unsplash.com/400x300/?birthday,celebration" alt="Memory 7">
+                    <div class="photo-overlay">
+                        <p>🎂 วันเกิดของเธอ</p>
+                    </div>
+                </div>
+                <div class="photo-item">
+                    <img src="https://source.unsplash.com/400x300/?christmas,couple" alt="Memory 8">
+                    <div class="photo-overlay">
+                        <p>🎄 คริสต์มาสด้วยกัน</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Video Section -->
+        <section id="videos" class="video-section">
+            <h2 class="section-title">🎬 วิดีโอความทรงจำ 🎬</h2>
+            <div class="video-grid">
+                <div class="video-item">
+                    <video controls>
+                        <source src="your-video-1.mp4" type="video/mp4">
+                        วิดีโอแรกของเรา
+                    </video>
+                    <p style="padding: 1rem; text-align: center; color: #d63031;">💕 วันที่เราเจอกัน</p>
+                </div>
+                <div class="video-item">
+                    <video controls>
+                        <source src="your-video-2.mp4" type="video/mp4">
+                        ทริปทะเล
+                    </video>
+                    <p style="padding: 1rem; text-align: center; color: #d63031;">🌊 ความสุขริมทะเล</p>
+                </div>
+                <div class="video-item">
+                    <video controls>
+                        <source src="your-video-3.mp4" type="video/mp4">
+                        วันครบรอบ
+                    </video>
+                    <p style="padding: 1rem; text-align: center; color: #d63031;">🎉 วันพิเศษของเรา</p>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 2rem; font-style: italic; color: #666;">
+                💡 หมายเหตุ: ใส่ไฟล์วิดีโอของคุณเองในโฟลเดอร์เดียวกับไฟล์ HTML นี้
+            </p>
+        </section>
+
+        <!-- Love Letters -->
+        <section id="letters" class="letters-section">
+            <h2 class="section-title">💌 จดหมายความรัก 💌</h2>
+            
+            <div class="letter-card">
+                <h3>ถึงคนที่รักที่สุด</h3>
+                <p>
+                    เธอรู้ไหม... ทุกเช้าที่ตื่นมา สิ่งแรกที่ฉันคิดถึงคือเธอ 
+                    ทุกคืนก่อนนอน สิ่งสุดท้ายที่อยู่ในความคิดก็คือเธอเหมือนกัน
+                    เธอทำให้ฉันรู้ว่าความรักที่แท้จริงเป็นอย่างไร
+                    ขอบคุณที่เข้ามาทำให้ชีวิตฉันสมบูรณ์แบบ
+                    รักเธอมากที่สุดในโลก 💕
+                </p>
+            </div>
+
+            <div class="letter-card">
+                <h3>สิ่งที่ฉันชอบในตัวเธอ</h3>
+                <p>
+                    ฉันชอบรอยยิ้มของเธอ ที่ทำให้วันเลวร้ายกลายเป็นวันที่ดีขึ้น<br>
+                    ฉันชอบเสียงหัวเราะของเธอ ที่ทำให้ฉันอยากได้ยินทุกวัน<br>
+                    ฉันชอบความเอาใจใส่ของเธอ ที่มีให้กับทุกคนรอบตัว<br>
+                    ฉันชอบทุกอย่างในตัวเธอ แม้แต่ข้อบกพร่องเล็กๆ น้อยๆ<br>
+                    เพราะนั่นแหละคือตัวตนที่แท้จริงของเธอที่ฉันหลงรัก ❤️
+                </p>
+            </div>
+
+            <div class="letter-card">
+                <h3>สัญญาของฉัน</h3>
+                <p>
+                    ฉันสัญญาว่าจะอยู่เคียงข้างเธอเสมอ ไม่ว่าจะเกิดอะไรขึ้น<br>
+                    ฉันสัญญาว่าจะทำให้เธอยิ้มทุกวัน แม้ในวันที่เธอเศร้า<br>
+                    ฉันสัญญาว่าจะรักษาและปกป้องเธอเสมอ<br>
+                    ฉันสัญญาว่าจะรักเธอด้วยหัวใจที่จริงใจที่สุด<br>
+                    และฉันสัญญาว่าจะทำให้เธอเป็นคนที่มีความสุขที่สุดในโลก 💖
+                </p>
+            </div>
+        </section>
+
+        <!-- Memories Map -->
+        <section class="map-section">
+            <h2 class="section-title">🗺️ สถานที่แห่งความทรงจำ 🗺️</h2>
+            <div class="map-grid">
+                <div class="map-item">
+                    <div class="map-icon">☕</div>
+                    <h4>ร้านกาแฟ</h4>
+                    <p>ที่เราเจอกันครั้งแรก</p>
+                </div>
+                <div class="map-item">
+                    <div class="map-icon">🎬</div>
+                    <h4>โรงหนัง</h4>
+                    <p>เดทครั้งแรกของเรา</p>
+                </div>
+                <div class="map-item">
+                    <div class="map-icon">🌳</div>
+                    <h4>สวนสาธารณะ</h4>
+                    <p>ที่เราเดินเล่นด้วยกัน</p>
+                </div>
+                <div class="map-item">
+                    <div class="map-icon">🍜</div>
+                    <h4>ร้านอาหาร</h4>
+                    <p>ที่เราชอบไปกินด้วยกัน</p>
+                </div>
+                <div class="map-item">
+                    <div class="map-icon">🌊</div>
+                    <h4>ชายหาด</h4>
+                    <p>ทริปที่น่าจดจำ</p>
+                </div>
+                <div class="map-item">
+                    <div class="map-icon">🏔️</div>
+                    <h4>ภูเขา</h4>
+                    <p>ดูพระอาทิตย์ขึ้น</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quiz Section -->
+        <section id="quiz" class="quiz-section">
+            <h2 class="section-title">🎯 เกมรู้จักกัน 🎯</h2>
+            
+            <div class="quiz-question">
+                <h3>คำถามที่ 1: วันแรกที่เราเจอกัน ฉันใส่เสื้อสีอะไร?</h3>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">🔴 สีแดง</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">🔵 สีน้ำเงิน</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">⚫ สีดำ</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">⚪ สีขาว</div>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <h3>คำถามที่ 2: อาหารที่ฉันชอบที่สุดคืออะไร?</h3>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">🍕 พิซซ่า</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">🍜 ก๋วยเตี๋ยว</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">🍔 เบอร์เกอร์</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">🍣 ซูชิ</div>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <h3>คำถามที่ 3: สีโปรดของฉันคือ?</h3>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">💙 สีฟ้า</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true)">💜 สีม่วง</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">💚 สีเขียว</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false)">💛 สีเหลือง</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Surprise Section -->
+        <section id="surprise" class="surprise-section">
+            <h2 style="font-size: 2.5rem; color: white; margin-bottom: 1rem;">
+                🎁 มีอะไรพิเศษให้เธอ 🎁
+            </h2>
+            <p style="font-size: 1.3rem; color: white; margin-bottom: 2rem;">
+                กดปุ่มด้านล่างเพื่อเปิดของขวัญจากฉัน
+            </p>
+            <button class="surprise-btn" onclick="openSurprise()">
+                🎀 ลองเปิดดูสิ 🎀
+            </button>
+        </section>
+    </div>
+
+    <!-- Surprise Modal -->
+    <div class="surprise-modal" id="surpriseModal">
+        <div class="surprise-content">
+            <button class="surprise-close" onclick="closeSurprise()">✖</button>
+            <h2 style="color: #d63031; margin-bottom: 1rem;">💝 สำหรับคนพิเศษ 💝</h2>
+            <img src="https://source.unsplash.com/600x400/?couple,kiss" alt="Our Photo" class="surprise-image">
+            <p class="surprise-text">
+                ขอบคุณที่เข้ามาในชีวิตของฉัน<br>
+                ขอบคุณที่ทำให้ทุกวันมีความหมาย<br>
+                ขอบคุณที่รักฉันในแบบที่ฉันเป็น<br>
+                และขอบคุณที่ให้ฉันได้รักเธอ<br>
+                <strong style="font-size: 1.5rem; color: #d63031;">ฉันรักเธอมากที่สุดในโลก 💕</strong>
+            </p>
+            <div style="margin-top: 2rem;">
+                <div style="font-size: 3rem;">💐🌹🌺🌸🌼</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Music Player -->
+    <div class="music-player">
+        <button class="music-btn" onclick="toggleMusic()" id="musicBtn">🎵</button>
+        <div class="music-info" id="musicInfo">
+            <div>เพลงประกอบ</div>
+            <small>Playing...</small>
+        </div>
+        <audio id="bgMusic" loop>
+            <source src="your-love-song.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <!-- Scroll to Top -->
+    <button class="scroll-top" id="scrollTop" onclick="scrollToTop()">⬆️</button>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-heart">💕</div>
+        <h3 style="margin: 1rem 0;">Made with Love</h3>
+        <p>สร้างด้วยความรักจากใจ เพื่อคนที่รักที่สุด</p>
+        <p style="margin-top: 1rem; opacity: 0.8;">
+            © 2024 Forever Together | ❤️ Always & Forever ❤️
+        </p>
+    </footer>
+
+    <script>
+        // Loading Screen
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loadingScreen').classList.add('hidden');
+            }, 2000);
+        });
+
+        // Floating Hearts Background
+        function createFloatingHearts()

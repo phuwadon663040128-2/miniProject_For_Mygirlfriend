@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ร้านค้าออนไลน์ - ShopDee</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .top-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .search-bar {
+            flex: 1;
+            max-width: 500px;
+            margin: 0 2rem;
+            position: relative;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 0.7rem 3rem 0.7rem 1rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+        }
+
+        .search-btn {
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #667eea;
+            border: none;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        .header-icons {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .icon-btn {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            position: relative;
+            font-size: 1.2rem;
+        }
+
+        .badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ff4757;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        nav a:hover {
+            opacity: 0.8;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 20px;
+        }
+
+        /* Banner Slider */
+        .banner-slider {
+            position: relative;
+            height: 400px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            animation: fadeIn 0.5s;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            padding: 1rem;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        .slider-btn.prev { left: 10px; }
+        .slider-btn.next { right: 10px; }
+
+        /* Category Filter */
+        .category-filter {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .category-filter h3 {
+            margin-bottom: 1rem;
+        }
+
+        .category-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            padding: 0.5rem 1.5rem;
+            border: 2px solid #667eea;
+            background: white;
+            color: #667eea;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .category-btn.active,
+        .category-btn:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        /* Product Grid */
+        .products-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .sort-options select {
+            padding: 0.5rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 1rem;
+        }
+
+        .product-name {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .product-price {
+            font-size: 1.3rem;
+            color: #667eea;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .old-price {
+            text-decoration: line-through;
+            color: #999;
+            margin-left: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .product-rating {
+            color: #ffa502;
+            margin-bottom: 0.5rem;
+        }
+
+        .add-to-cart-btn {
+            width: 100%;
+            padding: 0.7rem;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+
+        .add-to-cart-btn:hover {
+            background: #764ba2;
+        }
+
+        /* Shopping Cart Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item-image {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .quantity-controls {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .qty-btn {
+            padding: 0.3rem 0.7rem;
+            border: 1px solid #ddd;
+            background: white;
+            cursor: pointer;
+        }
+
+        .remove-item {
+            color: #ff4757;
+            cursor: pointer;
+        }
+
+        .cart-total {
+            padding: 1rem;
+            font-size: 1.3rem;
+            font-weight: bold;
+            text-align: right;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 1rem;
+            background: #2ecc71;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+
+        .checkout-btn:hover {
+            background: #27ae60;
+        }
+
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 3rem 0 1rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: #bdc3c7;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-btn {
+            width: 40px;
+            height: 40px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #34495e;
+            color: #95a5a6;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .top-header {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .search-bar {
+                margin: 0;
+                max-width: 100%;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 1rem;
+            }
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 2rem auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="top-header">
+                <div class="logo">🛍️ ShopDee</div>
+                
+                <div class="search-bar">
+                    <input type="text" id="searchInput" placeholder="ค้นหาสินค้า...">
+                    <button class="search-btn" onclick="searchProducts()">ค้นหา</button>
+                </div>
+
+                <div class="header-icons">
+                    <button class="icon-btn" onclick="toggleWishlist()">
+                        ❤️
+                        <span class="badge" id="wishlistBadge">0</span>
+                    </button>
+                    <button class="icon-btn" onclick="toggleCart()">
+                        🛒
+                        <span class="badge" id="cartBadge">0</span>
+                    </button>
+                    <button class="icon-btn" onclick="toggleUser()">👤</button>
+                </div>
+            </div>
+
+            <nav>
+                <ul>
+                    <li><a href="#home">หน้าแรก</a></li>
+                    <li><a href="#products">สินค้า</a></li>
+                    <li><a href="#deals">โปรโมชั่น</a></li>
+                    <li><a href="#about">เกี่ยวกับเรา</a></li>
+                    <li><a href="#contact">ติดต่อ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Banner Slider -->
+        <div class="banner-slider">
+            <div class="slide active" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem;">
+                🎉 ลดราคาสูงสุด 50%
+            </div>
+            <div class="slide" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem;">
+                🚚 ส่งฟรีทั่วประเทศ
+            </div>
+            <div class="slide" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem;">
+                ✨ สินค้าใหม่มาแล้ว
+            </div>
+            <button class="slider-btn prev" onclick="changeSlide(-1)">❮</button>
+            <button class="slider-btn next" onclick="changeSlide(1)">❯</button>
+        </div>
+
+        <!-- Category Filter -->
+        <div class="category-filter">
+            <h3>หมวดหมู่สินค้า</h3>
+            <div class="category-buttons">
+                <button class="category-btn active" onclick="filterCategory('all')">ทั้งหมด</button>
+                <button class="category-btn" onclick="filterCategory('electronics')">อิเล็กทรอนิกส์</button>
+                <button class="category-btn" onclick="filterCategory('fashion')">แฟชั่น</button>
+                <button class="category-btn" onclick="filterCategory('home')">ของใช้ในบ้าน</button>
+                <button class="category-btn" onclick="filterCategory('sports')">กีฬา</button>
+            </div>
+        </div>
+
+        <!-- Products Section -->
+        <div class="products-header">
+            <h2>สินค้าทั้งหมด</h2>
+            <div class="sort-options">
+                <select onchange="sortProducts(this.value)">
+                    <option value="default">เรียงตาม</option>
+                    <option value="price-low">ราคา: ต่ำ - สูง</option>
+                    <option value="price-high">ราคา: สูง - ต่ำ</option>
+                    <option value="name">ชื่อสินค้า</option>
+                    <option value="rating">คะแนนรีวิว</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="products-grid" id="productsGrid">
+            <!-- Products will be loaded here by JavaScript -->
+        </div>
+    </div>
+
+    <!-- Shopping Cart Modal -->
+    <div class="modal" id="cartModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>🛒 ตรวจสอบตะกร้า</h2>
+                <button class="close-btn" onclick="toggleCart()">✖</button>
+            </div>
+            <div id="cartItems">
+                <!-- Cart items will be loaded here -->
+            </div>
+            <div class="cart-total">
+                ยอดรวม: <span id="cartTotal">0</span> บาท
+            </div>
+            <button class="checkout-btn" onclick="checkout()">ชำระเงิน</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>เกี่ยวกับเรา</h3>
+                <p>ShopDee - ร้านค้าออนไลน์ที่ดีที่สุด มีสินค้าคุณภาพ ราคาถูก ส่งไว</p>
+                <div class="social-links">
+                    <button class="social-btn">f</button>
+                    <button class="social-btn">📷</button>
+                    <button class="social-btn">🐦</button>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>บริการลูกค้า</h3>
+                <ul>
+                    <li><a href="#">ติดต่อเรา</a></li>
+                    <li><a href="#">วิธีการสั่งซื้อ</a></li>
+                    <li><a href="#">การจัดส่ง</a></li>
+                    <li><a href="#">การคืนสินค้า</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>นโยบาย</h3>
+                <ul>
+                    <li><a href="#">นโยบายความเป็นส่วนตัว</a></li>
+                    <li><a href="#">ข้อกำหนดการใช้งาน</a></li>
+                    <li><a href="#">นโยบายคุกกี้</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>ติดต่อเรา</h3>
+                <ul>
+                    <li>📞 02-xxx-xxxx</li>
+                    <li>📧 info@shopdee.com</li>
+                    <li>📍 กรุงเทพมหานคร</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 ShopDee. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Sample Product Data
+        const products = [
+            {
+                id: 1,
+                name: 'หูฟังบลูทูธ Premium',
+                price: 1990,
+                oldPrice: 2990,
+                category: 'electronics',
+                image: 'https://via.placeholder.com/250x250/667eea/ffffff?text=Headphone',
+                rating: 4.5
+            },
+            {
+                id: 2,
+                name: 'เสื้อยืดแฟชั่น',
+                price: 299,
+                oldPrice: 599,
+                category: 'fashion',
+                image: 'https://via.placeholder.com/250x250/f093fb/ffffff?text=T-Shirt',
+                rating: 4.0
+            },
+            {
+                id: 3,
+                name: 'รองเท้าผ้าใบ',
+                price: 1290,
+                oldPrice: 1890,
+                category: 'fashion',
+                image: 'https://via.placeholder.com/250x250/4facfe/ffffff?text=Shoes',
+                rating: 4.8
+            },
+            {
+                id: 4,
+                name: 'เมาส์ไร้สาย',
+                price: 590,
+                oldPrice: 890,
+                category: 'electronics',
+                image: 'https://via.placeholder.com/250x250/43e97b/ffffff?text=Mouse',
+                rating: 4.3
+            },
+            {
+                id: 5,
+                name: 'หมอนอิง Premium',
+                price: 450,
+                oldPrice: 750,
+                category: 'home',
+                image: 'https://via.placeholder.com/250x250/fa709a/ffffff?text=Pillow',
+                rating: 4.2
+            },
+            {
+                id: 6,
+                name: 'ลูกฟุตบอล',
+                price: 890,
+                oldPrice: 1290,
+                category: 'sports',
+                image: 'https://via.placeholder.com/250x250/fee140/ffffff?text=Football',
+                rating: 4.6
+            },
+            {
+                id: 7,
+                name: 'กระเป๋าสะพาย',
+                price: 790,
+                oldPrice: 1290,
+                category: 'fashion',
+                image: 'https://via.placeholder.com/250x250/30cfd0/ffffff?text=Bag',
+                rating: 4.4
+            },
+            {
+                id: 8,
+                name: 'โคมไฟตั้งโต๊ะ',
+                price: 690,
+                oldPrice: 990,
+                category: 'home',
+                image: 'https://via.placeholder.com/250x250/a8edea/ffffff?text=Lamp',
+                rating: 4.1
+            }
+        ];
+
+        let cart = [];
+        let wishlist = [];
+        let currentSlide = 0;
+        let currentCategory = 'all';
+        let filteredProducts = [...products];
+
+        // Initialize
+        function init() {
+            displayProducts(products);
+            updateCartBadge();
+            updateWishlistBadge();
+            startSlider();
+        }
+
+        // Display Products
+        function displayProducts(productsToShow) {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = productsToShow.map(product => `
+                <div class="product-card" onclick="viewProduct(${product.id})">
+                    <img src="${product.image}" alt="${product.name}" class="product-image">
+                    <div class="product-info">
+                        <div class="product-name">${product.name}</div>
+                        <div class="product-rating">${'⭐'.repeat(Math.floor(product.rating))} (${product.rating})</div>
+                        <div class="product-price">
+                            ฿${product.price.toLocaleString()}
+                            <span class="old-price">฿${product.oldPrice.toLocaleString()}</span>
+                        </div>
+                        <button class="add-to-cart-btn" onclick="addToCart(event, ${product.id})">
+                            เพิ่มลงตะกร้า
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Add to Cart
+        function addToCart(event, productId) {
+            event.stopPropagation();
+            const product = products.find(p => p.id === productId);
+            const existingItem = cart.find(item => item.id === productId);
+            
+            if (existingItem) {
+                existingItem.quantity++;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+            
+            updateCartBadge();
+            showNotification('เพิ่มสินค้าลงตะกร้าแล้ว! 🎉');
+        }
+
+        // Update Cart Badge
+        function updateCartBadge() {
+            const badge = document.getElementById('cartBadge');
+            const total = cart.reduce((sum, item) => sum + item.quantity, 0);
+            badge.textContent = total;
+        }
+
+        // Update Wishlist Badge
+        function updateWishlistBadge() {
+            document.getElementById('wishlistBadge').textContent = wishlist.length;
+        }
+
+        // Toggle Cart Modal
+        function toggleCart() {
+            const modal = document.getElementById('cartModal');
+            modal.classList.toggle('active');
+            
+            if (modal.classList.contains('active')) {
+                displayCartItems();
+            }
+        }
+
+        // Display Cart Items
+        function displayCartItems() {
+            const cartItemsDiv = document.getElementById('cartItems');
+            const cartTotalSpan = document.getElementById('cartTotal');
+            
+            if (cart.length === 0) {
+                cartItemsDiv.innerHTML = '<p style="text-align: center; padding: 2rem;">ตะกร้าว่างเปล่า</p>';
+                cartTotalSpan.textContent = '0';
+                return;
+            }
+            
+            cartItemsDiv.innerHTML = cart.map(item => `
+                <div class="cart-item">
+                    <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+                    <div class="cart-item-info">
+                        <div>${item.name}</div>
+                        <div style="color: #667eea; font-weight: bold;">฿${item.price.toLocaleString()}</div>
+                        <div class="quantity-controls">
+                            <button class="qty-btn" onclick="updateQuantity(${item.id}, -1)">-</button>
+                            <span style="padding: 0.3rem 1rem; border: 1px solid #ddd;">${item.quantity}</span>
+                            <button class="qty-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
+                        </div>
+                    </div>
+                    <div>
+                        <div style="font-weight: bold;">฿${(item.price * item.quantity).toLocaleString()}</div>
+                        <button class="remove-item" onclick="removeFromCart(${item.id})">ลบ</button>
+                    </div>
+                </div>
+            `).join('');
+            
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            cartTotalSpan.textContent = total.toLocaleString();
+        }
+
+        // Update Quantity
+        function updateQuantity(productId, change) {
+            const item = cart.find(i => i.id === productId);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity <= 0) {
+                    removeFromCart(productId);
+                } else {
+                    displayCartItems();
+                    updateCartBadge();
+                }
+            }
+        }
+
+        // Remove from Cart
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            displayCartItems();
+            updateCartBadge();
+        }
+
+        // Checkout
+        function checkout() {
+            if (cart.length === 0) {
+                alert('ตะกร้าว่างเปล่า');
+                return;
+            }
+            
+            alert('ขอบคุณสำหรับการสั่งซื้อ! 🎉\nรวมทั้งหมด: ฿' + 
+                cart.reduce((sum, item) => sum + (item.price * item.quantity), 0).toLocaleString());
+            cart = [];
+            updateCartBadge();
+            toggleCart();
+        }
+
+        // Filter by Category
+        function filterCategory(category) {
+            currentCategory = category;
+            
+            // Update active button
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Filter products
+            if (category === 'all') {
+                filteredProducts = [...products];
+            } else {
+                filteredProducts = products.filter(p => p.category === category);
+            }
+            
+            displayProducts(filteredProducts);
+        }
+
+        // Sort Products
+        function sortProducts(sortBy) {
+            let sorted = [...filteredProducts];
+            
+            switch(sortBy) {
+                case 'price-low':
+                    sorted.sort((a, b) => a.price - b.price);
+                    break;
+                case 'price-high':
+                    sorted.sort((a, b) => b.price - a.price);
+                    break;
+                case 'name':
+                    sorted.sort((a, b) => a.name.localeCompare(b.name));
+                    break;
+                case 'rating':
+                    sorted.sort((a, b) => b.rating - a.rating);
+                    break;
+            }
+            
+            displayProducts(sorted);
+        }
+
+        // Search Products
+        function searchProducts() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const results = products.filter(p => 
+                p.name.toLowerCase().includes(searchTerm)
+            );
+            
+            displayProducts(results);
+            
+            if (results.length === 0) {
+                document.getElementById('productsGrid').innerHTML = 
+                    '<p style="text-align: center; grid-column: 1/-1; padding: 2rem;">ไม่พบสินค้า</p>';
+            }
+        }
+
+        // Banner Slider
+        function startSlider() {
+            setInterval(() => {
+                changeSlide(1);
+            }, 5000);
+        }
+
+        function changeSlide(direction) {
+            const slides = document.querySelectorAll('.slide');
+            slides[currentSlide].classList.remove('active');
+            
+            currentSlide += direction;
+            if (currentSlide >= slides.length) currentSlide = 0;
+            if (currentSlide < 0) currentSlide = slides.length - 1;
+            
+            slides[currentSlide].classList.add('active');
+        }
+
+        // View Product Detail
+        function viewProduct(productId) {
+            const product = products.find(p => p.id === productId);
+            alert(`📱 ${product.name}\n💰 ราคา: ฿${product.price.toLocaleString()}\n⭐ คะแนน: ${product.rating}/5`);
+        }
+
+        // Show Notification
+        function showNotification(message) {
+            // Simple alert - you can enhance this with a custom toast notification
+            const notification = document.createElement('div');
+            notification.textContent = message;
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: #2ecc71;
+                color: white;
+                padding: 1rem 2rem;
+                border-radius: 5px;
+                z-index: 3000;
+                animation: slideIn 0.3s;
+            `;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
+        // Toggle Wishlist
+        function toggleWishlist() {
+            alert('ฟังก์ชันรายการโปรด - กำลังพัฒนา');
+        }
+
+        // Toggle User Menu
+        function toggleUser() {
+            alert('ฟังก์ชันบัญชีผู้ใช้ - กำลังพัฒนา');
+        }
+
+        // Enter key for search
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('searchInput').addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    searchProducts();
+                }
+            });
+        });
+
+        // Initialize the website
+        init();
+    </script>
+</body>
+</html>
